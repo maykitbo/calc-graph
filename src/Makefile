@@ -9,7 +9,7 @@ clean:
 	$(MAKE) -C tests clean
 
 install:
-	cmake build/CMakeLists.txt
+	cmake -B"build" -H"build"
 	$(MAKE) -C build
 ifeq ($(detected_OS),Linux)
 	mv build/calc .
@@ -31,7 +31,7 @@ start:
 # 	./build/calc.app/Contents/MacOS/calc
 # endif
 
-uninstall:
+uninstall: clean
 	rm -rf build/cmake_install.cmake
 	rm -rf build/CMakeCache.txt
 	rm -rf build/CMakeFiles

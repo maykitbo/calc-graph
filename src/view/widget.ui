@@ -1186,12 +1186,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <customwidget>
    <class>MGraphicsView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">view/graphicsview.h</header>
+   <header location="global">graphicsview.h</header>
   </customwidget>
   <customwidget>
    <class>MTextEdit</class>
    <extends>QTextEdit</extends>
-   <header location="global">view/textedit.h</header>
+   <header location="global">textedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

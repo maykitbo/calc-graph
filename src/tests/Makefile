@@ -6,7 +6,7 @@ all: test
 build:
 	g++ ../controller/*.cpp ../model/*.cpp tests.cpp -pthread -lgtest -o test
 
-test: build valgrind
+test: build
 	./test
 
 gcov_report: test

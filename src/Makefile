@@ -11,11 +11,11 @@ clean:
 install:
 	cmake -B"build" -H"build"
 	$(MAKE) -C build
-ifeq ($(detected_OS),Linux)
+# ifeq ($(detected_OS),Linux)
 	mv build/calc .
-endif
-ifeq ($(detected_OS),Darwin)
-	mv build/calc.app/Contents/MacOS/calc .
+# endif
+# ifeq ($(detected_OS),Darwin)
+# 	mv build/calc.app/Contents/MacOS/calc .
 endif
 
 start:

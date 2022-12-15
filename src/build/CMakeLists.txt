@@ -15,7 +15,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++17 -Wall -Werror -Wextra -g")
 
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+# find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 
 add_executable(calc
@@ -40,5 +42,5 @@ add_executable(calc
 )
 
 
-target_link_libraries(calc PRIVATE Qt5::Widgets)
+target_link_libraries(calc PRIVATE Qt6::Widgets)
 # target_link_libraries (calc ${CMAKE_THREAD_LIBS_INIT})

@@ -31,7 +31,7 @@ start:
 # 	./build/calc.app/Contents/MacOS/calc
 # endif
 
-uninstall: clean
+uninstall:
 	rm -rf build/cmake_install.cmake
 	rm -rf build/CMakeCache.txt
 	rm -rf build/CMakeFiles

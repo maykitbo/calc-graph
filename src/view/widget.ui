@@ -46,7 +46,7 @@
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(238, 238, 236);</string>
+           <string notr="true">background-color: white; color: black;</string>
           </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -83,7 +83,7 @@
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(238, 238, 236);</string>
+             <string notr="true">background-color: white; color: black;</string>
             </property>
             <property name="tabChangesFocus">
              <bool>true</bool>
@@ -831,7 +831,7 @@ background-color: rgb(186, 189, 182);</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(238, 238, 236);</string>
+          <string notr="true">background-color: white; color: black;</string>
          </property>
          <property name="verticalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -992,7 +992,7 @@ background-color: rgb(186, 189, 182);</string>
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(238, 238, 236);</string>
+              <string notr="true">background-color: white; color: black;</string>
              </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1024,7 +1024,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(238, 238, 236);</string>
+              <string notr="true">background-color: white; color: black;</string>
              </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1071,7 +1071,7 @@ background-color: rgb(186, 189, 182);</string>
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(238, 238, 236);</string>
+              <string notr="true">background-color: white; color: black;</string>
              </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1103,7 +1103,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(238, 238, 236);</string>
+              <string notr="true">background-color: white; color: black;</string>
              </property>
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>

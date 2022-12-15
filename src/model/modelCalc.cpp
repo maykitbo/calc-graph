@@ -78,11 +78,11 @@ void ModelCalc::parsing() {
   }
   name_pair names[] = {
       {"+", plus},      {"-", minus},   {"*", mult},    {"/", div},
-      {"(", open},      {")", close},   {"^", power},   {"sin", sin},
-      {"cos", cos},     {"tan", tg},    {"tg", tg},     {"mod", mod},
-      {"sqrt", sqrt},   {"asin", asin}, {"acos", acos}, {"arcsin", asin},
-      {"arccos", acos}, {"atan", atg},  {"arctg", atg}, {"arctan", atg},
-      {"atg", atg},     {"log", log},   {"ln", ln},     {"pi", p},
+      {"(", open},      {")", close},   {"^", power},   {"sin", msin},
+      {"cos", mcos},     {"tan", tg},    {"tg", tg},     {"mod", mod},
+      {"sqrt", msqrt},   {"asin", masin}, {"acos", macos}, {"arcsin", masin},
+      {"arccos", macos}, {"atan", atg},  {"arctg", atg}, {"arctan", atg},
+      {"atg", atg},     {"log", mlog},   {"ln", ln},     {"pi", p},
       {"e", e},         {"x", x},       {"p", p},       {"%", mod},
       {"inf", inf},     {"π", p}};
   for (std::size_t k = 0; k < expression.size();) {

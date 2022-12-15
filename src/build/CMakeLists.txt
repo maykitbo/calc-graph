@@ -42,5 +42,10 @@ add_executable(calc
 )
 
 
-target_link_libraries(calc PRIVATE Qt6::Widgets)
+# target_link_libraries(calc PRIVATE Qt5::Widgets)
+if(QT_VERSION_MAJOR EQUAL 6)
+  target_link_libraries(calc PRIVATE Qt6::Widgets)
+else()
+  target_link_libraries(calc PRIVATE Qt5::Widgets)
+endif()
 # target_link_libraries (calc ${CMAKE_THREAD_LIBS_INIT})

@@ -77,6 +77,7 @@ int Element::operatorPrice() const {
 }
 
 double Element::count(double a, double b) const {
+  using namespace std;
   switch (op) {
     case plus:
       return a + b;
@@ -87,34 +88,35 @@ double Element::count(double a, double b) const {
     case mult:
       return a * b;
     case mod:
-      return std::fmod(a, b);
+      return fmod(a, b);
     case power:
-      return std::pow(a, b);
+      return pow(a, b);
     default:
       return 0;
   }
 }
 
 double Element::count(double a) const {
+  using namespace std;
   switch (op) {
-    case sin:
-      return std::sin(a);
-    case cos:
-      return std::cos(a);
-    case asin:
-      return std::asin(a);
-    case acos:
-      return std::acos(a);
+    case msin:
+      return sin(a);
+    case mcos:
+      return cos(a);
+    case masin:
+      return asin(a);
+    case macos:
+      return acos(a);
     case tg:
-      return std::tan(a);
+      return tan(a);
     case atg:
-      return std::atan(a);
-    case sqrt:
-      return std::sqrt(a);
+      return atan(a);
+    case msqrt:
+      return sqrt(a);
     case ln:
-      return std::log(a);
-    case log:
-      return std::log10(a);
+      return log(a);
+    case mlog:
+      return log10(a);
     case uplus:
       return a;
     case uminus:

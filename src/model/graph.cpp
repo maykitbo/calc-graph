@@ -21,8 +21,8 @@ void Model::clear() {
 
 void Model::countPointMas() {
   xn = xmin;
-  double step = (xmax - xmin) / width;
-  for (int k = 0; k < width; ++k) {
+  double step = (xmax - xmin) / (double)(width * 1);
+  for (double k = 0; k < width; k += 1) {
     if (fabs(xn) < step / 5) {
       xn = 0;
       pushPoint(k, count());
@@ -32,11 +32,11 @@ void Model::countPointMas() {
   }
 }
 
-int Model::yVTPoint(double y) {
-  return (int)((0.5 - (y - ((ymin + ymax) / 2.0)) / (ymax - ymin)) * height);
+double Model::yVTPoint(double y) {
+  return ((0.5 - (y - ((ymin + ymax) / 2.0)) / (ymax - ymin)) * (double)height);
 }
 
-void Model::pushPoint(int x, double y) {
+void Model::pushPoint(double x, double y) {
   if (isnan(y) || isinf(y) || y > ymax + fabs(ymax) || y < ymin - fabs(ymin)) {
     if (!points.empty()) points.back().flag = false;
   } else {

@@ -47,11 +47,9 @@ class Model : public ModelCalc {
   void countPointMas();
   void moveX(double x);
   void moveY(double y);
-  // void compX(int x);
-  // void compY(int y);
-  int yVTPoint(double y);
+  double yVTPoint(double y);
   int xVTPoint(double x);
-  void pushPoint(int x, double y);
+  void pushPoint(double x, double y);
   void reCount();
   void resize(int h, int w);
   void gridsRecount();
@@ -62,7 +60,6 @@ class Model : public ModelCalc {
   void twoAuto(double &a, double &b);
   void xMinMax();
   void yMinMax();
-
  public:
   void clear();
   Model() : ModelCalc() {}
@@ -76,11 +73,7 @@ class Model : public ModelCalc {
   void setMove(double x, double y);
   void setMoveX(double x);
   void setMoveY(double y);
-  // ctrl_point controlMove(int x);
-  // void compressX(int y);
-  // void compressY(int x);
   void onPointCenter();
-  // void reRatio(int h, int w);
 };
 
 }  // namespace s21

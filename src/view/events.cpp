@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "textedit.h"
 
+using namespace s21;
+
 void MTextEdit::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Return) {
     emit(enterP());
@@ -13,6 +15,14 @@ void Widget::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Return) {
     enterPressed();
   }
+  if (event->key() == Qt::Key_Tab) {
+    std::cout << "456\n";
+  }
+}
+
+void MScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+  widget->doubleClick();
+  QGraphicsScene::mouseDoubleClickEvent(mouseEvent);
 }
 
 void Widget::resizeEvent(QResizeEvent *event) {
@@ -29,6 +39,7 @@ void Widget::resizeEvent(QResizeEvent *event) {
 }
 
 void MGraphicsView::wheelEvent(QWheelEvent *event) {
+  if (event->modifiers() & Qt::ControlModifier) return;
   if (*graphDone) mscene()->wheel(event->angleDelta().ry() < 0);
 }
 
@@ -73,11 +84,7 @@ void MScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
   qreal x = mouseEvent->screenPos().rx() - mouseEvent->lastScreenPos().rx();
   qreal y = mouseEvent->lastScreenPos().ry() - mouseEvent->screenPos().ry();
   if (mouseEvent->modifiers() & Qt::ControlModifier) {
-    // if (mouseEvent->modifiers() & Qt::ShiftModifier) {
-      // controlShiftMove(x, y);
-    // } else {
-      controlMove(mouseEvent->scenePos().x());
-    // }
+    controlMove(mouseEvent->scenePos().x());
   } else if (mouseEvent->modifiers() & Qt::ShiftModifier) {
     shiftMove(x, y);
   } else {
@@ -85,6 +92,13 @@ void MScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
   }
 }
 
+void MScene::keyReleaseEvent(QKeyEvent *keyEvent) {
+  if (keyEvent->key() == Qt::Key_Control && pointDone) {
+    removeItem(pointEllips);
+    removeItem(pointText);
+    pointDone = false;
+  }
+}
 
 void Widget::enterPressed() {
   control->setExpression(getText(ui->inputtext));
@@ -102,15 +116,18 @@ void MScene::wheel(bool znak) {
 }
 
 void MScene::controlMove(qreal x) {
-  if (pointDone) {
-    removeItem(pointEllips);
-    removeItem(pointText);
-  }
   for (auto p : control->getPoints()) {
     if (p.x == x) {
-      pointEllips = addEllipse(x - 3, p.y - 3, 6, 6, GRAPH_COLOR);
-      pointText = addText("(" + QString::number(p.xval, 'g', 4) + " : "\
-        + QString::number(p.yval, 'g', 4) + ")");
+      const QString add = "(" + QString::number(p.xval, 'g', 4) + " : "\
+        + QString::number(p.yval, 'g', 4) + ")";
+      if (!pointDone) {
+        pointEllips = addEllipse(x - 3, p.y - 3, 6, 6, CTRL_POINT_PEN);
+        pointText = addText(add);
+        pointText->setDefaultTextColor(TEXT_COLOR);
+      } else {
+        pointEllips->setRect(x - 3, p.y - 3, 6, 6);
+        pointText->setPlainText(add);
+      }
       pointText->setPos(x > width / 2 ? x - pointText->boundingRect().width() - 7 : x + 7, p.y - 9);
       widget->setSceneN();
       pointDone = true;
@@ -119,6 +136,7 @@ void MScene::controlMove(qreal x) {
   }
   pointDone = false;
 }
+
 
 void MScene::shiftMove(qreal x, qreal y) {
   widget->offPCenter();

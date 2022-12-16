@@ -3,18 +3,19 @@
 
 #include <QTextEdit>
 
+namespace s21 {
+
 class MTextEdit : public QTextEdit {
     Q_OBJECT
     public:
-        MTextEdit() : QTextEdit() {
-            // setUndoRedoEnabled(false);
-        }
+        MTextEdit() : QTextEdit() {}
         MTextEdit(QWidget*&qw) : QTextEdit(qw) {}
-        // ~MTextEdit() = default;
     private:
         void keyPressEvent(QKeyEvent *event);
     signals:
         void enterP();
 };
+
+}  // namespace s21
 
 #endif

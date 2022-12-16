@@ -2,13 +2,23 @@
 
 #include "widget.h"
 
+using namespace s21;
+
 void Widget::setCursorPlace() { cursorPlace = (QTextEdit *)sender(); }
 
 void Widget::setCursorPlaceAuto() {
   cursorPlace = (QTextEdit *)sender();
-  if (((QTextEdit *)sender())->toPlainText() == "auto" &&
-      !(((QTextEdit *)sender())->isReadOnly()))
-    ((QTextEdit *)sender())->clear();
+  if (cursorPlace->toPlainText() == "auto" && !(cursorPlace->isReadOnly())) {
+    cursorPlace->clear();
+    if (cursorPlace == ui->xmintext && !(ui->xmaxtext->isReadOnly()) && ui->xmaxtext->toPlainText() == "auto")
+      ui->xmaxtext->clear();
+    else if (cursorPlace == ui->xmaxtext && !(ui->xmintext->isReadOnly()) && ui->xmintext->toPlainText() == "auto")
+      ui->xmintext->clear();
+    else if (cursorPlace == ui->ymaxtext && !(ui->ymintext->isReadOnly()) && ui->ymintext->toPlainText() == "auto")
+      ui->ymintext->clear();
+    else if (cursorPlace == ui->ymintext && !(ui->ymaxtext->isReadOnly()) && ui->ymaxtext->toPlainText() == "auto")
+      ui->ymaxtext->clear();
+  }
 }
 
 void Widget::cXYChanged() {
@@ -23,6 +33,11 @@ void Widget::pCenterChanged() {
   }
   if (!(ui->ymintext->isReadOnly())) changeTextVar(ui->ymaxtext);
   if (!(ui->xmintext->isReadOnly())) changeTextVar(ui->xmaxtext);
+}
+
+void Widget::doubleClick() {
+  if (ui->pointcenter->isChecked()) return;
+  ui->pointcenter->setCheckState(Qt::Checked);
 }
 
 void Widget::offPCenter() {
@@ -95,11 +110,12 @@ void Widget::onText(QTextEdit *text) {
 }
 
 void Widget::offText(QTextEdit *text) {
+  text->setText("auto");
   text->setReadOnly(true);
   text->setStyleSheet("background-color: grey;");
 }
 
-void Widget::setController(s21::Controller *c) {
+void Widget::setController(Controller *c) {
   control = c;
   scene->setController(c);
   c->setHW(ui->graphicsView->height(), ui->graphicsView->width());

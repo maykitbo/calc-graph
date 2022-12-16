@@ -8,13 +8,16 @@
 #include <QGraphicsEllipseItem>
 
 #include "../controller/controller.h"
-// #include "widget.h"
+
+namespace s21 {
 
 class Widget;
 
-#define GRAPH_COLOR QPen(Qt::red)
-#define GRID_COLOR QPen(Qt::green)
-#define ZERO_GRID_COLOR QPen(Qt::black)
+#define GRAPH_PEN QPen(Qt::red)
+#define GRID_PEN QPen(Qt::green)
+#define ZERO_GRID_PEN QPen(Qt::black)
+#define CTRL_POINT_PEN QPen(Qt::blue)
+#define TEXT_COLOR Qt::black
 
 class MScene : public QGraphicsScene {
   Q_OBJECT
@@ -22,6 +25,8 @@ class MScene : public QGraphicsScene {
   void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
   void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
   void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
+  void keyReleaseEvent(QKeyEvent *keyEvent);
+  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent);
   s21::Controller *control;
   int height, width;
   Widget *widget;
@@ -32,9 +37,9 @@ class MScene : public QGraphicsScene {
   bool moveMouse = false;
   void controlMove(qreal x);
   void shiftMove(qreal x, qreal y);
-  QPen gridPen(double i) { return i == 0 ? ZERO_GRID_COLOR : GRID_COLOR; }
-  void addXText(s21::grid_pair xg);
-  void addYText(s21::grid_pair yg);
+  QPen gridPen(double i) { return i == 0 ? ZERO_GRID_PEN : GRID_PEN; }
+  void addXText(grid_pair xg);
+  void addYText(grid_pair yg);
   void drawGraph();
   void drawGrids();
 
@@ -42,7 +47,7 @@ class MScene : public QGraphicsScene {
   void wheel(bool znak);
   MScene() : QGraphicsScene() {}
   MScene(QGraphicsView *gv, Widget *w) : QGraphicsScene(gv), widget(w) {}
-  void setController(s21::Controller *c) { control = c; }
+  void setController(Controller *c) { control = c; }
   void draw();
   void setHW(int h, int w);
   void normalMove(qreal x, qreal y);
@@ -63,5 +68,7 @@ class MGraphicsView : public QGraphicsView {
  public:
   void setGraphD(bool *gd) { graphDone = gd; }
 };
+
+}  // namespace s21
 
 #endif

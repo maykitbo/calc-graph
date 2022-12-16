@@ -52,8 +52,8 @@ enum enumElement : uint8_t {
 
 struct point_pair {
   bool flag;
-  int x;
-  int y;
+  double x;
+  double y;
   double xval;
   double yval;
   point_pair(bool f, int xi, int yi, double xv, double yv) : flag(f), x(xi), y(yi), xval(xv), yval(yv) {}

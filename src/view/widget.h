@@ -13,21 +13,18 @@
 #include "./ui_widget.h"
 #include "graphicsview.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class Widget;
-}
-QT_END_NAMESPACE
+namespace s21 {
 
 class Widget : public QWidget {
   Q_OBJECT
  public:
   Widget(QWidget *parent = nullptr);
   ~Widget();
-  void setController(s21::Controller *c);
+  void setController(Controller *c);
   void setSceneN();
   void offPCenter();
   void offCXY();
+  void doubleClick();
  private slots:
   void click();
   void clickResult();
@@ -47,7 +44,7 @@ class Widget : public QWidget {
   void keyPressEvent(QKeyEvent *event);
   void resizeEvent(QResizeEvent *event);
   Ui::Widget *ui;
-  s21::Controller *control;
+  Controller *control;
   QTextEdit *cursorPlace;
   MScene *scene;
   void hwToScene() {
@@ -75,4 +72,7 @@ class Widget : public QWidget {
  public:
   bool graphD() { return graphDone; }
 };
+
+}  // namespace s21
+
 #endif  // WIDGET_H

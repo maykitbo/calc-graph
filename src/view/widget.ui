@@ -38,7 +38,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="MTextEdit" name="inputtext">
+         <widget class="s21::MTextEdit" name="inputtext">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
             <horstretch>0</horstretch>
@@ -56,6 +56,9 @@
           </property>
           <property name="tabChangesFocus">
            <bool>true</bool>
+          </property>
+          <property name="undoRedoEnabled">
+           <bool>false</bool>
           </property>
           <property name="overwriteMode">
            <bool>false</bool>
@@ -75,7 +78,7 @@
            </widget>
           </item>
           <item>
-           <widget class="MTextEdit" name="xtext">
+           <widget class="s21::MTextEdit" name="xtext">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
               <horstretch>0</horstretch>
@@ -88,6 +91,9 @@
             <property name="tabChangesFocus">
              <bool>true</bool>
             </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
@@ -99,7 +105,10 @@
              </sizepolicy>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(238, 238, 236);</string>
+             <string notr="true">background-color: white; color: black;</string>
+            </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
             </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -823,12 +832,18 @@ background-color: rgb(186, 189, 182);</string>
         </widget>
        </item>
        <item>
-        <widget class="MTextEdit" name="gridstaptext">
+        <widget class="s21::MTextEdit" name="gridstaptext">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>105</width>
+           <height>0</height>
+          </size>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: white; color: black;</string>
@@ -841,6 +856,9 @@ background-color: rgb(186, 189, 182);</string>
          </property>
          <property name="tabChangesFocus">
           <bool>true</bool>
+         </property>
+         <property name="undoRedoEnabled">
+          <bool>false</bool>
          </property>
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -984,12 +1002,18 @@ background-color: rgb(186, 189, 182);</string>
             </widget>
            </item>
            <item>
-            <widget class="MTextEdit" name="xmintext">
+            <widget class="s21::MTextEdit" name="xmintext">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>105</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: white; color: black;</string>
@@ -1002,6 +1026,9 @@ background-color: rgb(186, 189, 182);</string>
              </property>
              <property name="tabChangesFocus">
               <bool>true</bool>
+             </property>
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1016,12 +1043,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="MTextEdit" name="xmaxtext">
+            <widget class="s21::MTextEdit" name="xmaxtext">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>105</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: white; color: black;</string>
@@ -1034,6 +1067,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <property name="tabChangesFocus">
               <bool>true</bool>
+             </property>
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1063,12 +1099,18 @@ background-color: rgb(186, 189, 182);</string>
             </widget>
            </item>
            <item>
-            <widget class="MTextEdit" name="ymintext">
+            <widget class="s21::MTextEdit" name="ymintext">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>105</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: white; color: black;</string>
@@ -1081,6 +1123,9 @@ background-color: rgb(186, 189, 182);</string>
              </property>
              <property name="tabChangesFocus">
               <bool>true</bool>
+             </property>
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1095,12 +1140,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="MTextEdit" name="ymaxtext">
+            <widget class="s21::MTextEdit" name="ymaxtext">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>105</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: white; color: black;</string>
@@ -1113,6 +1164,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <property name="tabChangesFocus">
               <bool>true</bool>
+             </property>
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1135,7 +1189,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </layout>
    </item>
    <item>
-    <widget class="MGraphicsView" name="graphicsView">
+    <widget class="s21::MGraphicsView" name="graphicsView">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
        <horstretch>100</horstretch>
@@ -1143,7 +1197,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </sizepolicy>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255)</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -1184,12 +1238,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MGraphicsView</class>
+   <class>s21::MGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header location="global">graphicsview.h</header>
   </customwidget>
   <customwidget>
-   <class>MTextEdit</class>
+   <class>s21::MTextEdit</class>
    <extends>QTextEdit</extends>
    <header location="global">textedit.h</header>
   </customwidget>

@@ -33,11 +33,11 @@ void Model::setXY(std::string &xMax, std::string &xMin, std::string &yMax,
     if (ymin >= ymax) throw std::runtime_error("yMin >= yMax");
     twoAuto(xmax, xmin);
   } else {
-    xmin = modX.countX(xMin, "xMin input");
     ymin = modX.countX(yMin, "yMin input");
-    xmax = modX.countX(xMax, "xMax input");
     ymax = modX.countX(yMax, "yMax input");
     if (ymin >= ymax) throw std::runtime_error("yMin >= yMax");
+    xmax = modX.countX(xMax, "xMax input");
+    xmin = modX.countX(xMin, "xMin input");
     if (xmin >= xmax) throw std::runtime_error("xMin >= xMax");
   }
 }
@@ -116,6 +116,11 @@ bool Model::oneSearch() {
 void Model::createMaxMin(double val) {
   xmax = val;
   ymax = val;
-  xmin = -val;
-  ymin = -val;
+  if (val > 4 * M_PI && !pointC) {
+    xmin = val - 2 * M_PI;
+    ymin = val - 2 * M_PI;
+  } else {
+    xmin = -val;
+    ymin = -val;
+  }
 }

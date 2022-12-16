@@ -2,10 +2,12 @@
 
 #include "widget.h"
 
+using namespace s21;
+
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
-  s21::Model model;
-  s21::Controller controller(&model);
+  Model model;
+  Controller controller(&model);
   Widget w;
   w.setController(&controller);
   w.show();

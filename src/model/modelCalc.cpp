@@ -1,6 +1,5 @@
 
 #include "model.h"
-// #include "limits.h"
 
 using namespace s21;
 
@@ -69,6 +68,7 @@ double ModelCalc::count() const {
 }
 
 void ModelCalc::parsing() {
+  if (expression == "auto") er.throwError("please enter a value");
   for (auto c = expression.begin(); c != expression.end(); c++) {
     *c = std::tolower(*c);
     if (*c == '.' && decimalPoint == ',')

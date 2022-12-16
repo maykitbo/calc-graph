@@ -21,7 +21,6 @@ void Model::resize(int h, int w) {
   ymax *= ry;
   width = w;
   height = h;
-  // gridsRecount();
   reCount();
 }
 
@@ -31,16 +30,6 @@ void Model::setMove(double x, double y) {
   moveY(y);
   reCount();
 }
-
-// ctrl_point Model::controlMove(int x) {
-//   // xn = xmin + (x != 0 ? (xmax - xmin) * (double)x / (double)width : 0);
-//   // ctrl_point result;
-//   // result.xval = xn;
-//   // result.yval = count();
-//   // result.yp = points[x].y;
-//   // std::cout << result.xval << " " << result.yp << " " << result.yval << " " << x << " " << xn << "\n";
-//   // return result;
-// }
 
 void Model::setMoveX(double x) {
   clear();

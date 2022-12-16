@@ -1,5 +1,7 @@
 #include "widget.h"
 
+using namespace s21;
+
 Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
   ui->setupUi(this);
   cursorPlace = ui->inputtext;

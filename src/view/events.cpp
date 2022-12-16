@@ -1,5 +1,5 @@
-#include "widget.h"
 #include "textedit.h"
+#include "widget.h"
 
 using namespace s21;
 
@@ -118,8 +118,8 @@ void MScene::wheel(bool znak) {
 void MScene::controlMove(qreal x) {
   for (auto p : control->getPoints()) {
     if (p.x == x) {
-      const QString add = "(" + QString::number(p.xval, 'g', 4) + " : "\
-        + QString::number(p.yval, 'g', 4) + ")";
+      const QString add = "(" + QString::number(p.xval, 'g', 4) + " : " +
+                          QString::number(p.yval, 'g', 4) + ")";
       if (!pointDone) {
         pointEllips = addEllipse(x - 3, p.y - 3, 6, 6, CTRL_POINT_PEN);
         pointText = addText(add);
@@ -128,7 +128,9 @@ void MScene::controlMove(qreal x) {
         pointEllips->setRect(x - 3, p.y - 3, 6, 6);
         pointText->setPlainText(add);
       }
-      pointText->setPos(x > width / 2 ? x - pointText->boundingRect().width() - 7 : x + 7, p.y - 9);
+      pointText->setPos(
+          x > width / 2 ? x - pointText->boundingRect().width() - 7 : x + 7,
+          p.y - 9);
       widget->setSceneN();
       pointDone = true;
       return;
@@ -136,7 +138,6 @@ void MScene::controlMove(qreal x) {
   }
   pointDone = false;
 }
-
 
 void MScene::shiftMove(qreal x, qreal y) {
   widget->offPCenter();

@@ -1,45 +1,8 @@
-
-#include <gtest/gtest.h>
-
-#include "../controller/controller.h"
-
-using namespace std;
-
-class calc : public testing::Test {
- protected:
-  s21::Model model;
-  s21::Controller contr = s21::Controller(&model);
-
- public:
-  //  correct input with x
-  void test_c_x(string s, string x, double r) {
-    contr.setExpression(s);
-    if (isnan(r))
-      ASSERT_EQ(1, isnan(contr.count(x)));
-    else
-      ASSERT_DOUBLE_EQ(contr.count(x), r);
-  }
-  //  incorrect input with x
-  void test_i_x(string s, string x) {
-    contr.setExpression(s);
-    ASSERT_ANY_THROW(contr.count(x));
-  }
-  //  correct input without x
-  void test_c(string s, double r) {
-    contr.setExpression(s);
-    if (isnan(r))
-      ASSERT_EQ(1, isnan(contr.count("0")));
-    else
-      ASSERT_DOUBLE_EQ(contr.count("0"), r);
-  }
-  //  incorrect input without x
-  void test_i(string s) {
-    contr.setExpression(s);
-    ASSERT_ANY_THROW(contr.count("0"));
-  }
-};
+#include "tests.h"
 
 TEST_F(calc, correct_1) {
+  test_c("1,1", 1.1);
+  test_c("1.1", 1.1);
   test_c("-1", -1);
   test_c("+0", 0);
   test_c("-0", 0);
@@ -126,7 +89,47 @@ TEST_F(calc, incorrect_x) {
   test_i_x("sinx", "r");
 }
 
-TEST_F(calc, test_graph) {}
+TEST_F(calc, graph_correct_auto) {
+  test_g_c("x", [](double x) { return x; });
+  test_g_c("sinx", [](double x) { return sin(x); });
+  test_g_c("1/x", [](double x) { return 1.0 / x; });
+  test_g_c("sin(tgx)", [](double x) { return sin(tan(x)); });
+  test_g_c("ln(x)-3*sqrt(sinx/(1-cosx))",
+           [](double x) { return log(x) - 3 * sqrt(sin(x) / (1 - cos(x))); });
+  test_g_c("6", [](double x) { return 6; });
+  test_g_c("cosx-100", [](double x) { return cos(x) - 100; });
+}
+
+TEST_F(calc, graph_incorrect) {
+  test_g_i("x", "1", "0", "1", "2", "3");
+  test_g_i("x", "1", "2", "1", "2", "0");
+  test_g_i("x", "1", "2", "1", "2", "-1");
+  test_g_i("x", "1", "2", "1", "-1", "3");
+  test_g_i("x", "1", "2", "1", "1", "3");
+  test_g_i("x", "1", "1", "1", "2", "3");
+  test_g_i("qwert", "1", "2", "1", "2", "3");
+  test_g_i("sinx", "x", "2", "1", "2", "3");
+  test_g_i("sinx", "1", "e32e3", "1", "2", "3");
+  test_g_i("sinx", "1", "2", "...", "2", "3");
+  test_g_i("sinx", "1", "2", "1", "2", "/*");
+  test_g_i("cosx", "auto", "3", "1", "3", "6");
+  test_g_i("x", "auto", "auto", "0", "auto", "1.11");
+}
+
+TEST_F(calc, graph_correct_full) {
+  test_g_f("5^x", "-sqrtp", "sqrtp", "-e", "e", "auto",
+           [](double x) { return pow(5, x); });
+  test_g_f("sinx + 212", "1", "5", "auto", "auto", "auto",
+           [](double x) { return sin(x) + 212; });
+  test_g_f("1/(x+15)", "auto", "auto", "-2.45", "sin4", "pi/2",
+           [](double x) { return 1.0 / (x + 15); });
+  test_g_f("x-sinx+lnx", "1-sin5", "auto", "0,012", "auto", "0.0001",
+           [](double x) { return x - sin(x) + log(x); });
+  test_g_f("sqrt(3)", "777.777", "auto", "auto", "auto", "auto",
+           [](double x) { return sqrt(3); });
+  test_g_f("(1-x)(0.1+sinx)", "auto", "auto", "4", "auto", "1.11",
+           [](double x) { return (1.0 - x) * (0.1 + sin(x)); });
+}
 
 GTEST_API_ int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

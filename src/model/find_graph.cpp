@@ -40,6 +40,10 @@ void Model::setXY(std::string &xMax, std::string &xMin, std::string &yMax,
     xmin = modX.countX(xMin, "xMin input");
     if (xmin >= xmax) throw std::runtime_error("xMin >= xMax");
   }
+  if (isinf(xmin) || isnan(xmin)) throw std::runtime_error("xmin inf or nan");
+  if (isinf(ymin) || isnan(ymin)) throw std::runtime_error("ymin inf or nan");
+  if (isinf(xmax) || isnan(xmax)) throw std::runtime_error("xmax inf or nan");
+  if (isinf(ymax) || isnan(ymax)) throw std::runtime_error("ymax inf or nan");
 }
 
 void Model::xMinMax() {

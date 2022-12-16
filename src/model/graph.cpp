@@ -54,7 +54,7 @@ void Model::gridCount(std::string gridStep) {
   } else {
     gridsAuto = false;
     grids = modX.countX(gridStep, "grid input");
-    if (grids <= 0)
+    if (grids <= 0 || isinf(grids) || isnan(grids))
       throw std::runtime_error("incorrect grid step");
     else if (grids < (xmax - xmin) / NUM_GRID_MAX) {
       grids = (xmax - xmin) / NUM_GRID_MAX;

@@ -43,16 +43,16 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
   connect(ui->connectxy, SIGNAL(stateChanged(int)), this, SLOT(cXYChanged()));
   connect(ui->pointcenter, SIGNAL(stateChanged(int)), this,
           SLOT(pCenterChanged()));
-    connect(ui->inputtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->xtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->xmaxtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->xmintext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->ymaxtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->gridstaptext, SIGNAL(enterP()), this, SLOT(enterPressed()));
-    connect(ui->ymintext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->inputtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->xtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->xmaxtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->xmintext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->ymaxtext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->gridstaptext, SIGNAL(enterP()), this, SLOT(enterPressed()));
+  connect(ui->ymintext, SIGNAL(enterP()), this, SLOT(enterPressed()));
 }
 
-Widget::~Widget() { 
-    delete ui;
-    delete scene;
+Widget::~Widget() {
+  delete ui;
+  delete scene;
 }

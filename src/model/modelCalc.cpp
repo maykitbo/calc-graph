@@ -3,8 +3,7 @@
 
 using namespace s21;
 
-ModelCalc::ModelCalc()
-    : xn(0), impasse({Element(T)}), postfix(), last() {
+ModelCalc::ModelCalc() : xn(0), impasse({Element(T)}), postfix(), last() {
   if (std::stof("0.5") > 0.1)
     decimalPoint = '.';
   else
@@ -77,14 +76,14 @@ void ModelCalc::parsing() {
       *c = '.';
   }
   name_pair names[] = {
-      {"+", plus},      {"-", minus},   {"*", mult},    {"/", div},
-      {"(", open},      {")", close},   {"^", power},   {"sin", msin},
-      {"cos", mcos},     {"tan", tg},    {"tg", tg},     {"mod", mod},
+      {"+", plus},       {"-", minus},    {"*", mult},     {"/", div},
+      {"(", open},       {")", close},    {"^", power},    {"sin", msin},
+      {"cos", mcos},     {"tan", tg},     {"tg", tg},      {"mod", mod},
       {"sqrt", msqrt},   {"asin", masin}, {"acos", macos}, {"arcsin", masin},
-      {"arccos", macos}, {"atan", atg},  {"arctg", atg}, {"arctan", atg},
-      {"atg", atg},     {"log", mlog},   {"ln", ln},     {"pi", p},
-      {"e", e},         {"x", x},       {"p", p},       {"%", mod},
-      {"inf", inf},     {"π", p}};
+      {"arccos", macos}, {"atan", atg},   {"arctg", atg},  {"arctan", atg},
+      {"atg", atg},      {"log", mlog},   {"ln", ln},      {"pi", p},
+      {"e", e},          {"x", x},        {"p", p},        {"%", mod},
+      {"inf", inf},      {"π", p}};
   for (std::size_t k = 0; k < expression.size();) {
     auto kBuff = k;
     if ((expression)[k] == ' ') {

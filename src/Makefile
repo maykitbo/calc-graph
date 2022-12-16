@@ -17,6 +17,8 @@ start:
 	./app/calc
 
 uninstall:
+	rm -rf app/calc
+	rm -rf build-*
 	rm -rf build/cmake_install.cmake
 	rm -rf build/CMakeCache.txt
 	rm -rf build/CMakeFiles

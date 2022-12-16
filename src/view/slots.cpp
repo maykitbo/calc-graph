@@ -10,13 +10,17 @@ void Widget::setCursorPlaceAuto() {
   cursorPlace = (QTextEdit *)sender();
   if (cursorPlace->toPlainText() == "auto" && !(cursorPlace->isReadOnly())) {
     cursorPlace->clear();
-    if (cursorPlace == ui->xmintext && !(ui->xmaxtext->isReadOnly()) && ui->xmaxtext->toPlainText() == "auto")
+    if (cursorPlace == ui->xmintext && !(ui->xmaxtext->isReadOnly()) &&
+        ui->xmaxtext->toPlainText() == "auto")
       ui->xmaxtext->clear();
-    else if (cursorPlace == ui->xmaxtext && !(ui->xmintext->isReadOnly()) && ui->xmintext->toPlainText() == "auto")
+    else if (cursorPlace == ui->xmaxtext && !(ui->xmintext->isReadOnly()) &&
+             ui->xmintext->toPlainText() == "auto")
       ui->xmintext->clear();
-    else if (cursorPlace == ui->ymaxtext && !(ui->ymintext->isReadOnly()) && ui->ymintext->toPlainText() == "auto")
+    else if (cursorPlace == ui->ymaxtext && !(ui->ymintext->isReadOnly()) &&
+             ui->ymintext->toPlainText() == "auto")
       ui->ymintext->clear();
-    else if (cursorPlace == ui->ymintext && !(ui->ymaxtext->isReadOnly()) && ui->ymaxtext->toPlainText() == "auto")
+    else if (cursorPlace == ui->ymintext && !(ui->ymaxtext->isReadOnly()) &&
+             ui->ymaxtext->toPlainText() == "auto")
       ui->ymaxtext->clear();
   }
 }

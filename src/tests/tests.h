@@ -11,6 +11,7 @@ class calc : public testing::Test {
  protected:
   s21::Model model;
   s21::Controller contr = s21::Controller(&model);
+
  public:
   //  correct input with x
   void test_c_x(string s, string x, double r) {
@@ -26,16 +27,13 @@ class calc : public testing::Test {
     ASSERT_ANY_THROW(contr.count(x));
   }
   //  correct input without x
-  void test_c(string s, double r) {
-    test_c_x(s, "0", r);
-  }
+  void test_c(string s, double r) { test_c_x(s, "0", r); }
   //  incorrect input without x
-  void test_i(string s) {
-    test_i_x(s, "0");
-  }
+  void test_i(string s) { test_i_x(s, "0"); }
   // correct graphic
-  template<class T>
-  void test_g_f(string s, string xmin, string xmax, string ymin, string ymax, string grids, const T &func) {
+  template <class T>
+  void test_g_f(string s, string xmin, string xmax, string ymin, string ymax,
+                string grids, const T &func) {
     contr.setHW(100, 100);
     contr.setExpression(s);
     contr.setPointCenter(false);
@@ -46,12 +44,13 @@ class calc : public testing::Test {
     }
   }
   //  correct graph with x y min max grids auto
-  template<class T>
+  template <class T>
   void test_g_c(string s, const T &func) {
     test_g_f(s, "auto", "auto", "auto", "auto", "auto", func);
   }
   // incorrect graphic input
-  void test_g_i(string s, string xmin, string xmax, string ymin, string ymax, string grids) {
+  void test_g_i(string s, string xmin, string xmax, string ymin, string ymax,
+                string grids) {
     contr.setHW(100, 100);
     try {
       contr.setExpression(s);

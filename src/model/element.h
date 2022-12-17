@@ -56,7 +56,8 @@ struct point_pair {
   double y;
   double xval;
   double yval;
-  point_pair(bool f, int xi, int yi, double xv, double yv) : flag(f), x(xi), y(yi), xval(xv), yval(yv) {}
+  point_pair(bool f, int xi, int yi, double xv, double yv)
+      : flag(f), x(xi), y(yi), xval(xv), yval(yv) {}
   point_pair(bool f) : flag(f), x(0), y(0), xval(0), yval(0) {}
 };
 
@@ -65,7 +66,6 @@ struct ctrl_point {
   double yval;
   double xval;
 };
-
 
 typedef std::vector<point_pair> point_vec;
 typedef std::pair<double, int> grid_pair;

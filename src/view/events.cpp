@@ -101,11 +101,11 @@ void MScene::keyReleaseEvent(QKeyEvent *keyEvent) {
 }
 
 void Widget::enterPressed() {
-  control->setExpression(getText(ui->inputtext));
+  control->setExpression(ui->inputtext->getText());
   tryCatch([&]() {
     firstGraph();
     ui->outputtext->setText(
-        QString::number(control->count(getText(ui->xtext)), 'g', 6));
+        QString::number(control->count(ui->xtext->getText()), 'g', 6));
   });
 }
 

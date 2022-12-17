@@ -4,10 +4,10 @@
 
 using namespace s21;
 
-void Widget::setCursorPlace() { cursorPlace = (QTextEdit *)sender(); }
+void Widget::setCursorPlace() { cursorPlace = (MTextEdit *)sender(); }
 
 void Widget::setCursorPlaceAuto() {
-  cursorPlace = (QTextEdit *)sender();
+  cursorPlace = (MTextEdit *)sender();
   if (cursorPlace->toPlainText() == "auto" && !(cursorPlace->isReadOnly())) {
     cursorPlace->clear();
     if (cursorPlace == ui->xmintext && !(ui->xmaxtext->isReadOnly()) &&
@@ -26,8 +26,8 @@ void Widget::setCursorPlaceAuto() {
 }
 
 void Widget::cXYChanged() {
-  changeTextVar(ui->ymintext);
-  if (!ui->pointcenter->isChecked()) changeTextVar(ui->ymaxtext);
+  ui->ymintext->changeTextVar();
+  if (!ui->pointcenter->isChecked()) ui->ymaxtext->changeTextVar();
 }
 
 void Widget::pCenterChanged() {
@@ -35,8 +35,8 @@ void Widget::pCenterChanged() {
     control->onPointCenter();
     scene->draw();
   }
-  if (!(ui->ymintext->isReadOnly())) changeTextVar(ui->ymaxtext);
-  if (!(ui->xmintext->isReadOnly())) changeTextVar(ui->xmaxtext);
+  if (!(ui->ymintext->isReadOnly())) ui->ymaxtext->changeTextVar();
+  if (!(ui->xmintext->isReadOnly())) ui->xmaxtext->changeTextVar();
 }
 
 void Widget::doubleClick() {
@@ -48,13 +48,13 @@ void Widget::offPCenter() {
   if (!(ui->pointcenter->isChecked())) return;
   control->setPointCenter(false);
   ui->pointcenter->setChecked(false);
-  onText(ui->xmaxtext);
+  ui->xmaxtext->onText();
 }
 
 void Widget::offCXY() {
   if (!(ui->connectxy->isChecked())) return;
-  onText(ui->ymintext);
-  onText(ui->ymaxtext);
+  ui->ymintext->onText();
+  ui->ymaxtext->onText();
 }
 
 void Widget::click() {
@@ -62,33 +62,21 @@ void Widget::click() {
 }
 
 void Widget::clickResult() {
-  control->setExpression(getText(ui->inputtext));
+  control->setExpression(ui->inputtext->getText());
   tryCatch([&]() {
     ui->outputtext->setText(
-        QString::number(control->count(getText(ui->xtext)), 'g', 6));
+        QString::number(control->count(ui->xtext->getText()), 'g', 6));
   });
 }
 
 void Widget::clickClear() { cursorPlace->textCursor().deletePreviousChar(); }
 
 void Widget::setAutoX() {
-  if (ui->xmintext->isReadOnly()) onText(ui->xmintext);
-  if (!(ui->pointcenter->isChecked())) onText(ui->xmaxtext);
-  if (ui->connectxy->isChecked()) {
-    offText(ui->ymintext);
-    offText(ui->ymaxtext);
-  }
   ui->xmintext->setText("auto");
   ui->xmaxtext->setText("auto");
 }
 
 void Widget::setAutoY() {
-  if (ui->ymintext->isReadOnly()) onText(ui->ymintext);
-  if (!(ui->pointcenter->isChecked())) onText(ui->ymaxtext);
-  if (ui->connectxy->isChecked()) {
-    offText(ui->xmintext);
-    offText(ui->xmaxtext);
-  }
   ui->ymintext->setText("auto");
   ui->ymaxtext->setText("auto");
 }
@@ -101,22 +89,22 @@ void Widget::clickClearAll() {
   ui->outputtext->setText("result");
 }
 
-void Widget::changeTextVar(QTextEdit *text) {
-  if (text->isReadOnly())
-    onText(text);
+void MTextEdit::changeTextVar() {
+  if (isReadOnly())
+    onText();
   else
-    offText(text);
+    offText();
 }
 
-void Widget::onText(QTextEdit *text) {
-  text->setReadOnly(false);
-  text->setStyleSheet("background-color: white;");
+void MTextEdit::onText() {
+  setReadOnly(false);
+  setStyleSheet("background-color: white;");
 }
 
-void Widget::offText(QTextEdit *text) {
-  text->setText("auto");
-  text->setReadOnly(true);
-  text->setStyleSheet("background-color: grey;");
+void MTextEdit::offText() {
+  setText("auto");
+  setReadOnly(true);
+  setStyleSheet("background-color: grey;");
 }
 
 void Widget::setController(Controller *c) {
@@ -127,15 +115,15 @@ void Widget::setController(Controller *c) {
 }
 
 void Widget::clickGraph() {
-  control->setExpression(getText(ui->inputtext));
+  control->setExpression(ui->inputtext->getText());
   tryCatch([&]() { firstGraph(); });
 }
 
 void Widget::firstGraph() {
   control->setPointCenter(ui->pointcenter->isChecked());
-  control->graph(getText(ui->xmaxtext), getText(ui->xmintext),
-                 getText(ui->ymaxtext), getText(ui->ymintext));
-  control->setGridStep(getText(ui->gridstaptext));
+  control->graph(ui->xmaxtext->getText(), ui->xmintext->getText(),
+                 ui->ymaxtext->getText(), ui->ymintext->getText());
+  control->setGridStep(ui->gridstaptext->getText());
   scene->draw();
   setSceneN();
   graphDone = true;

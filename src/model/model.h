@@ -13,6 +13,7 @@ class ModelCalc {
   void parsing();
   void setPlace(std::string place) { er.setPlace(place); }
   void clear();
+
  private:
   char decimalPoint;
   Errors er;
@@ -26,6 +27,7 @@ class ModelCalc {
   void operatorRoat(Element oper);
   void impasToPost();
   void closeOper();
+
  public:
   double countX(std::string &x, std::string place);
   ModelCalc();
@@ -60,6 +62,7 @@ class Model : public ModelCalc {
   void twoAuto(double &a, double &b);
   void xMinMax();
   void yMinMax();
+
  public:
   void clear();
   Model() : ModelCalc() {}

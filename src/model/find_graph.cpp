@@ -27,11 +27,6 @@ void Model::setXY(std::string &xMax, std::string &xMin, std::string &yMax,
     xmax = modX.countX(xMax, "xMax input");
     if (xmin >= xmax) throw std::runtime_error("xMin >= xMax");
     twoAuto(ymax, ymin);
-  } else if (xMin == "auto" && xMax == "auto") {
-    ymin = modX.countX(yMin, "yMin input");
-    ymax = modX.countX(yMax, "yMax input");
-    if (ymin >= ymax) throw std::runtime_error("yMin >= yMax");
-    twoAuto(xmax, xmin);
   } else {
     ymin = modX.countX(yMin, "yMin input");
     ymax = modX.countX(yMax, "yMax input");
@@ -44,6 +39,9 @@ void Model::setXY(std::string &xMax, std::string &xMin, std::string &yMax,
   if (isinf(ymin) || isnan(ymin)) throw std::runtime_error("ymin inf or nan");
   if (isinf(xmax) || isnan(xmax)) throw std::runtime_error("xmax inf or nan");
   if (isinf(ymax) || isnan(ymax)) throw std::runtime_error("ymax inf or nan");
+  double dy = ((ymax - ymin) * ((height / width) - 1.0)) / 2.0;
+  ymax += dy;
+  ymin -= dy;
 }
 
 void Model::xMinMax() {
@@ -79,7 +77,11 @@ void Model::twoAuto(double &a, double &b) {
 
 void Model::findGraph() {
   xn = 0;
-  ynormal = INFINITY;
+  auto y = count();
+  if (!isnan(y) && !isinf(y))
+    ynormal = y;
+  else
+    ynormal = INFINITY;
   for (xn = M_PI; xn < 1e300; xn += xn / 10) {
     if (onePMSearch()) return;
     xn += 1.5;
@@ -106,8 +108,8 @@ bool Model::oneSearch() {
   double y = fabs(count());
   if (!isnan(y) && fabs(y - M_PI) < fabs(ynormal - M_PI)) ynormal = y;
   if (y < fabs(xn)) {
-    y = fabs(xn);
-    if (y < 2 * M_PI && y > 0.9 * M_PI)
+    y = xn;
+    if (fabs(y) < 2 * M_PI && fabs(y) > 0.9 * M_PI)
       y = 2 * M_PI;
     else
       y *= 1.2;
@@ -118,13 +120,20 @@ bool Model::oneSearch() {
 }
 
 void Model::createMaxMin(double val) {
-  xmax = val;
-  ymax = val;
-  if (val > 4 * M_PI && !pointC) {
-    xmin = val - 2 * M_PI;
-    ymin = val - 2 * M_PI;
+  if (fabs(ynormal) < fabs(val)) val = ynormal;
+  if ((val > 4 * M_PI || val < -4 * M_PI) && !pointC) {
+    if (val < 0) {
+      xmin = val;
+      xmax = 0.55 * val;
+    } else {
+      xmax = val;
+      xmin = 0.55 * val;
+    }
+    twoAuto(ymax, ymin);
   } else {
-    xmin = -val;
-    ymin = -val;
+    xmax = (val > 0 ? val : -val);
+    ymax = xmax;
+    xmin = -xmax;
+    ymin = -xmax;
   }
 }

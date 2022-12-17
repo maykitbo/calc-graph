@@ -7,9 +7,9 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
   cursorPlace = ui->inputtext;
   ui->connectxy->setChecked(true);
   ui->pointcenter->setChecked(true);
-  offText(ui->xmaxtext);
-  offText(ui->ymaxtext);
-  offText(ui->ymintext);
+  ui->xmaxtext->offText();
+  ui->ymaxtext->offText();
+  ui->ymintext->offText();
   scene = new MScene(ui->graphicsView, this);
   ui->graphicsView->setGraphD(&graphDone);
   for (int k = 0; k < 7; k++) {

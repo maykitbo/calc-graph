@@ -2,10 +2,10 @@
 #define GRAPHICSVIEW_H
 
 #include <QEvent>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsTextItem>
 #include <QGraphicsView>
 #include <QWheelEvent>
-#include <QGraphicsTextItem>
-#include <QGraphicsEllipseItem>
 
 #include "../controller/controller.h"
 

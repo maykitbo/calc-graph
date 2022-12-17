@@ -45,21 +45,13 @@ class Widget : public QWidget {
   void resizeEvent(QResizeEvent *event);
   Ui::Widget *ui;
   Controller *control;
-  QTextEdit *cursorPlace;
+  MTextEdit *cursorPlace;
   MScene *scene;
   void hwToScene() {
     scene->setHW(ui->graphicsView->height(), ui->graphicsView->width());
   }
   bool graphDone = false;
   void firstGraph();
-  void changeTextVar(QTextEdit *text);
-  void onText(QTextEdit *text);
-  void offText(QTextEdit *text);
-
-  std::string getText(QTextEdit *text) {
-    return text->toPlainText().toStdString();
-  }
-
   template <class T>
   void tryCatch(const T &func) {
     try {

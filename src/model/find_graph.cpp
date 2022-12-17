@@ -108,7 +108,10 @@ bool Model::oneSearch() {
   double y = fabs(count());
   if (!isnan(y) && fabs(y - M_PI) < fabs(ynormal - M_PI)) ynormal = y;
   if (y < fabs(xn)) {
-    y = xn;
+    if (fabs(ynormal) < fabs(y) && ynormal)
+      y = ynormal;
+    else
+      y = xn;
     if (fabs(y) < 2 * M_PI && fabs(y) > 0.9 * M_PI)
       y = 2 * M_PI;
     else
@@ -120,7 +123,6 @@ bool Model::oneSearch() {
 }
 
 void Model::createMaxMin(double val) {
-  if (fabs(ynormal) < fabs(val)) val = ynormal;
   if ((val > 4 * M_PI || val < -4 * M_PI) && !pointC) {
     if (val < 0) {
       xmin = val;
